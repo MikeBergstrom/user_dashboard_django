@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Welcome</title>
+          {% load staticfiles %}
+        <link rel="stylesheet" type = "text/css" href="{% static 'dashboard/css/style.css' %}"> 
+    </head>
+    <body>
+        <header>
+            <h4>Test App</h4>
+            <h5>Dashboard</h5>
+            <a href="http://localhost:8000/user/{{request.session.id}}">Profile</a>
+            <a href="http://localhost:8000/logout">Logout</a>
+        </header>
+        <h1>All Users</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>email</th>
+                <th>created_at</th>
+                <th>user_level</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.first_name}} {{user.last_name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.created_at}}</td>
+                <td>{{user.user_level}}</td>
+            </tr>
+            {% endfor %}
+            <a href="http://localhost:8000/edit/{{request.session.id}}">Edit your profile</a>
+    </body>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Welcome</title>
+          {% load staticfiles %}
+        <link rel="stylesheet" type = "text/css" href="{% static 'dashboard/css/style.css' %}"> 
+    </head>
+    <body>
+        <header>
+            <h4>Test App</h4>
+            <a href="http://localhost:8000/dashboard">Dashboard</a>
+            <h5>Profile</h5>
+            <a href="http://localhost:8000/logout">Logout</a>
+        </header>
+        <h4>Edit User {{user.id}}</h4>
+        <form action="update" method="post">
+            {% csrf_token %}
+            Email Address: <input type="text" name="email" value={{user.email}}>
+            First Name: <input type="text" name="first" value={{user.first_name}}>
+            Last Name: <input type="text" name="last" value={{user.last_name}}>
+            <input type="hidden" name="id" value={{user.id}}>
+            <input type="submit" value="Save">
+        </form>
+        <form action="password" method="post">
+            {% csrf_token %}
+            {% if messages %}
+                {% for message in messages %}
+                    {% if "changepass" in message.tags %}
+                        <p>{{message}}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            Password: <input type="text" name="password">
+            Password confirmation: <input type="text" name="confirm">
+            <input type="hidden" name="id" value={{user.id}}>
+            <input type="submit" value="Update Password">
+        </form>
+        <form action="description" method="post">
+            {% csrf_token %}
+            Description: <input type="text" name="description" value="user.description">
+            <input type="hidden" name="id" value={{user.id}}>
+            <input type="submit" value="Save">
+        </form>

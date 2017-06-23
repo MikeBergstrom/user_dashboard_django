@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Welcome</title>
+          {% load staticfiles %}
+        <link rel="stylesheet" type = "text/css" href="{% static 'login/css/style.css' %}"> 
+    </head>
+    <body>
+        <header>
+            <h4>Test App</h4>
+            <a href="http://localhost:8000/dashboard">Dashboard</a>
+            <a href="http://localhost:8000/user/{{request.session.id}}">Profile</a>
+            <a href="http://localhost:8000/logout">Logout</a>
+        </header>
+         <form id="adduser" action='/adduser' method='POST'>
+            <h2>Register:</h2>
+            {% if messages %}
+                {% for message in messages %}
+                    {% if "register" in message.tags %}
+                        <p>{{message}}</p>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+            {% csrf_token %}
+            First Name: <input type="text" name="first_name" value="first">
+            Last Name: <input type="text" name="last" value="last">
+            Email Address: <input type = "text" name="email" value="email">
+            Password: <input type="password" name="password" value="password">
+            Confirm Password: <input type="password" name="confirm" value="password">
+            <input type="submit" value="Submit"> 
+        </form><br>
+        <a href="http://localhost:8000/login">Already have an account? Login</a>
+    </body>

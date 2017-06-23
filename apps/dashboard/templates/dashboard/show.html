@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Show User</title>
+          {% load staticfiles %}
+        <link rel="stylesheet" type = "text/css" href="{% static 'login/css/style.css' %}"> 
+    </head>
+    <body>
+        <header>
+            <h4>Test App</h4>
+            <a href="http://localhost:8000/dashboard">Dashboard</a>
+            <h5>Profile</h5>
+            <a href="http://localhost:8000/logout">Logout</a>
+        </header>
+        <h2>{{user.first_name}} {{user.last_name}}</h2>
+        <h5>Registered at:                    {{user.created_at}}</h5>
+        <h5>User ID:                          {{user.id}}</h5>
+        <h5>Email Address:                    {{user.email}}</h5>
+        <h5>Description:                      {{user.description}}</h5>
+        <h2>Leave a message for {{user.first_name}}</h2>
+        <form action="message" method="post">
+            {% csrf_token %}
+            <input type="area" name="message">
+            <input type="hidden" name="wallid" value={{user.id}}> 
+            <input type="submit" value="Post">
+        </form>
+        {% for message in messages %}
+        <div class="messages">
+            <h5>{{message.mess_creator.first_name}} {{message.mess_creator.last_name}} wrote:</h5>
+            <p>{{message.created_at|timesince}} ago</p>
+            <h4>{{message.message}}</h4>
+            {% for comment in comments %}
+                {% if comment.comm_message.id == message.id %}
+                <div class="comments">
+                    <h5>{{comment.comm_user.first_name}} {{comment.comm_user.last_name}} wrote:</h5>
+                    <p>{{comment.created_at|timesince}} ago</p>
+                    <h4>{{comment.comment}}</h4>
+                {% endif %}
+            {% endfor %}
+            <h2>Comment on this message</h2>
+            <form action="comment" method="post">
+                {% csrf_token %}
+                <input type="area" name="comment">
+                <input type="hidden" name="messid" value={{message.id}}> 
+                <input type="hidden" name="wallid" value={{user.id}}>
+                <input type="submit" value="Post">
+            </form>
+        </div> 
+        {% endfor %}
+    </body> 
