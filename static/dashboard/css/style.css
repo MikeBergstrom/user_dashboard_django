@@ -1,0 +1,53 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+header{
+    border-bottom: 3px solid black;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+table, td, th{
+    border: 1px solid black;
+}
+h1{
+    display: inline-block;
+}
+h3 {
+    display: inline-block;
+    margin-left: 700px;
+
+}
+#logout {
+    width: 100px;
+    height: 25px;
+    vertical-align: top;
+    margin-top: 15px;
+    display: inline-block;
+}
+.comment{
+    width: 600px;
+    margin-left: 95px;
+}
+.message{
+    width: 600px;
+    vertical-align: top;
+    margin-bottom: 5px;
+    margin-left: 60px;
+}
+.commusername{
+    display: inline-block;
+    margin-left: 80px;
+    margin-top: 10px;
+}
+form {
+    margin-bottom: 10px;
+}
+.messusername{
+    margin-left: 40px;
+    margin-top: 30px;
+}
+.commentform{
+    margin-left: 120px;
+    margin-top: 20px;
+}
