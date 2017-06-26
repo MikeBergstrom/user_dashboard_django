@@ -8,7 +8,7 @@ import datetime
 
 
 def index(request):
-    User.objects.all().delete()
+    #User.objects.all().delete()
     print User.objects.all()
     return render(request, 'login/login.html')
 
