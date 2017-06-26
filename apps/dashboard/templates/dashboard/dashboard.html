@@ -10,8 +10,8 @@
         <header>
             <h4>Test App</h4>
             <h5>Dashboard</h5>
-            <a href="http://localhost:8000/user/{{request.session.id}}">Profile</a>
-            <a href="http://localhost:8000/logout">Logout</a>
+            <a href="/user/{{request.session.id}}">Profile</a>
+            <a href="/logout">Logout</a>
         </header>
         <h1>All Users</h1>
         <table>
@@ -31,5 +31,5 @@
                 <td>{{user.user_level}}</td>
             </tr>
             {% endfor %}
-            <a href="http://localhost:8000/edit/{{request.session.id}}">Edit your profile</a>
+            <a href="/edit/{{request.session.id}}">Edit your profile</a>
     </body>

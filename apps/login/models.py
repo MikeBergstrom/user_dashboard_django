@@ -57,7 +57,7 @@ class UserManager(models.Manager):
 
     def adduser(self, data):
         results = {'status':True, 'errors':[], 'user':None}
-        print "model register"
+        print "model adduser"
         # month, day, year = map(int, data['birth'].split('/'))
         # print year
         # print month
